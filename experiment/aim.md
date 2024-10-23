@@ -1,2 +1,2 @@
 ## Aim of experiment
-To analyze energy band diagrams and surface potential of a Metal-Oxide-Semiconductor (MOS) capacitor
+By measuring the drain current (I_D) as a function of the drain-source voltage (V_DS) for various gate-source voltage (V_GS) settings. The aim is to understand the device's behavior in different regions of operation, including the ohmic, active (saturation), and cutoff regions, and to analyze how these characteristics can be utilized in practical electronic applications.

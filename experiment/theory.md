@@ -1,60 +1,77 @@
 ## Theory
 **Introduction:**  
-The boundary between accumulation and depletion is the flat-band voltage and the boundary between depletion and inversion is the threshold voltage.
+The n-channel Junction Field Effect Transistor (JFET) is a type of FET where the current conduction is due to electrons, making it a unipolar device. The operation of an n-channel JFET relies on the control of the current flowing through a channel of n-type semiconductor material by the voltage applied to the gate terminal. The primary regions of operation are determined by the relationship between the gate-source voltage ($$V_{GS}$$) and the drain-source voltage ($$V_{DS}$$), influencing the device's output characteristics.
 
-![](./images/tvic.jpg)  
+<img src="images/FET.png"  />
 **Fig. 1. Threshold Voltage and Inversion charge**
 
-  
 
-### MOS Capacitor's three regimes-Accumulation, Depletion, Inversion
+Structure and Operation
+-----------------------
 
-A MOS Capacitor can be in three regimes: accumulation, depletion, and inversion [1,2]. The boundary between accumulation and depletion is the flat-band voltage, and the boundary between depletion and inversion is the threshold voltage. The flat-band voltage, denoted as $$V_{fb}$$ or $$V_{bi}$$, is defined as $$\phi_m - \phi_s$$, where $$\phi_m$$ is the work function of the metal and $$\phi_s$$ is the work function of the semiconductor substrate.
+An n-channel JFET consists of a channel of n-type semiconductor material with p-type regions diffused on either side, forming p-n junctions. These p-type regions are connected to the gate terminal, while the n-type channel connects the source and drain terminals. When a voltage is applied between the drain and source ($$V_{DS}$$), electrons flow from the source to the drain, constituting the drain current ($$I_D$$).
 
-At the flat-band voltage, the bands are flat, resulting in an electric field of zero throughout the semiconductor. The hole concentration $$p$$ equals the acceptor concentration, and the charge density $$\rho$$ is zero.
+Gate-Source Voltage ($$V_{GS}$$) Influence
+-----------------------------------
 
-Accumulation occurs when the gate voltage $$V$$ is negative, attracting holes to the oxide interface. This causes the valence band to bend up towards the Fermi energy, increasing the hole concentration $$p$$ near the oxide interface. The Fermi energy in the metal (represented by the black line on the left in the band diagram) moves up for negative voltages, indicating an increase in electron energy.
+The gate-source voltage ($$V_{GS}$$) is crucial in controlling the channel's conductivity. For an n-channel JFET, a negative VGS depletes the channel of electrons, reducing the current flow. When $$V_{GS}$$ is zero, the JFET operates at its maximum current for a given $$V_{DS}$$. As $$V_{GS}$$ becomes more negative, the channel narrows, restricting the current flow until the channel is completely pinched off, and the current becomes minimal.
 
-In the depletion regime, a positive gate voltage pushes mobile holes away from the oxide, leaving negatively charged acceptors behind. The valence band bends away from the Fermi energy at the oxide, resulting in a lower hole concentration near the oxide. The negative charge in the semiconductor is balanced by a positive charge on the metal surface, as indicated by the charge plot arrow. As the gate voltage increases positively, the depletion width grows, and the bands bend further down. Eventually, the conduction band gets closer to the Fermi energy than the valence band, leading to weak inversion where $$n > p$$ near the oxide. Strong inversion occurs when $$n = N_A$$ (acceptor concentration) at the oxide interface, at the threshold voltage $$V_T$$.
+Regions of Operation
+--------------------
 
-At $$V > V_T$$, an inversion channel forms at the semiconductor/oxide interface, characterized by a layer of mobile electrons. In the inversion state, the electric field in the semiconductor remains constant, while it increases within the oxide layer.
+### Ohmic (Linear) Region
 
-### Determining the band bending
+*   In this region, the JFET operates like a variable resistor. The $$V_{DS}$$ is low, and the channel is uniformly conductive.
+*   The drain current ($$I_D$$) increases linearly with an increase in $$V_{DS}$$.
+*   The relationship can be approximated by Ohm's law: ID ≈ $$V_{DS}$$ / RDS(on), where RDS(on) is the on-resistance of the JFET.
 
-To calculate the band bending, we start with Gauss's law,
+### Active (Saturation) Region
 
-$$\\begin{equation} \\nabla \\cdot \\vec{E} = \\frac{\\rho}{\\epsilon\_s\\epsilon\_0}. \\end{equation}$$
+*   As VDS increases, the channel near the drain end starts to pinch off when the voltage at the drain end of the channel equals the gate voltage plus the pinch-off voltage (VP).
+*   The current ID saturates and becomes relatively independent of VDS. The JFET enters the saturation region where $$I_D$$ is controlled by $$V_{GS}$$ and is given by:
+    
+    ID = IDSS (1 - VGS / VP)2
+    
+    where IDSS is the drain-source saturation current and VP is the pinch-off voltage.
+    
 
-$$Combining \ this \ with \ \\vec{E}=-\\nabla V \ yields \ the \ Poisson \ equation,$$
+### Cutoff Region
 
-$$\\begin{equation} \\nabla^2V = -\\frac{\\rho}{\\epsilon\_s\\epsilon\_0}, \\end{equation}$$
+*   When $$V_{GS}$$ is sufficiently negative, the channel is fully depleted, and the JFET is off. The drain current ($$I_D$$) is almost zero.
 
-where, for a MOS capacitor with a p-type substrate, the charge density is 
-$$\\rho = e\\left(-N\_A-n+p\\right)$$ and the charge carrier concentrations are,
+### Breakdown Region
 
+*   If VDS exceeds a certain critical value, the JFET enters the breakdown region where the drain current increases rapidly with a small increase in VDS. This is due to avalanche breakdown of the p-n junctions and can potentially damage the device.
 
-$$\\begin{equation} n=N\_c(300)\\left(\\frac{T}{300}\\right)^{3/2}\\exp\\left(\\frac{E\_F-E\_c}{k\_BT}\\right)\\qquad \\text{and}\\qquad p=N\_v(300)\\left(\\frac{T}{300}\\right)^{3/2}\\exp\\left(\\frac{E\_v-E\_F}{k\_BT}\\right). \\end{equation}$$
+Output Characteristics Curves
+-----------------------------
 
-Using the relation $$e\\frac{dV}{dx} = -\\frac{E\_v}{dx}$$ the Poisson equation can be written as a second order differential equation for $$E_v(x)$$,
+The output characteristics of an n-channel JFET are graphically represented by plotting the drain current ($$I_D$$) against the drain-source voltage ($$V_{DS}$$) for various gate-source voltages ($$V_{GS}$$). The typical output characteristics curves can be divided into different regions as described above, showing how $$I_D$$ varies with VDS for different VGS levels. These curves illustrate the JFET's behavior under different operating conditions and are essential for circuit design and analysis.
 
-$$ \\begin{equation} \\frac{d^2E\_v}{dx^2} = \\frac{e^2}{\\epsilon\_s\\epsilon\_0}\\left(-N\_A-N\_c\\exp\\left(\\frac{-E\_g-E\_v}{k\_BT}\\right)+N\_v\\exp\\left(\\frac{E\_v}{k\_BT}\\right)\\right). \\end{equation}$$
+Mathematical Model
+------------------
 
-### Numerical
+The mathematical model for the output characteristics in the active region is given by the Shockley equation:
 
-This differential equation was solved numerically using the shooting method [3]. First the maximum depletion width $$max(x_p)$$ and the threshold voltage $$V_T$$ are estimated using the analytic formulas from the depletion approximation.
+$$I_D = I_{DSS} (1 - V_{GS} / V_P)^2$$
 
+where $$I_{DSS}$$ is the drain-source saturation current when $$V_{GS}$$ = 0, and VP is the pinch-off voltage. This quadratic relationship highlights the sensitivity of $$I_D$$ to changes in $$V_{GS}$$, emphasizing the importance of gate control in JFET operation.
 
+In summary, the theory behind the output characteristics of an n-channel JFET involves understanding the influence of VGS and VDS on the drain current ($$I_D$$). By analyzing the different regions of operation and their corresponding behavior, one can effectively utilize the n-channel JFET in various electronic applications, ensuring optimal performance and reliability.
 
-$$\\begin{equation} x\_p = 2\\sqrt{\\frac{\\epsilon\_{\\text{semi}}\\epsilon\_0 k\_BT}{e^2N\_A}\\ln\\left(\\frac{N\_A}{n\_i}\\right)}. \\end{equation}$$ 
+The expression for the drain current of a n-channel JFET in the linear regime is,
 
-$$\\begin{equation} V\_T = \\frac{2t\_{ox}}{\\epsilon\_{ox}}\\sqrt{\\epsilon\_{\\text{semi}}N\_Ak\_BT \\ln \\left (\\frac{N\_A}{n\_i} \\right )} +\\frac{2k\_BT}{e} \\ln \\left (\\frac{N\_A}{n\_i} \\right ) +V\_{fb} \\end{equation}$$
+$$\\begin{equation} I\_D=I\_p\\left\[\\frac{V\_D}{V\_p}-\\frac{2}{3}\\left(\\frac{V\_{bi}+V\_D-V\_G}{V\_p}\\right)^{3/2}+\\frac{2}{3}\\left(\\frac{V\_{bi}-V\_G}{V\_p}\\right)^{3/2}\\right\], \\end{equation}$$
 
-Far from the oxide, the valence band satisfies the conditions $$E_v=k_BTln(N_AN_v)=E_{v0}E_v=k_BTln⁡(\frac{N_A}{N_v})=E_{v0}$$ and $$dE_vdx=0\frac{dE_v}{dx}=0$$. To determine the band bending, we start a distance of $$1.8x_p$$ from the oxide with $$E\_{v} = k\_BT\\ln\\left(\\frac{N\_A}{N\_v}\\right)=E\_{v0}$$ and a small value of $$dE_vdx=0\frac{dE_v}{dx}=0$$. The Poisson equation is integrated numerically using the midpoint method until the semiconductor oxide interface. This gives us the voltage $$V_s$$ at the semiconductor/oxide interface and the electric field $$E_s$$ at that point. The voltage on the gate is,
+where,
 
+$$\\begin{align} I\_p =\\frac{\\mu\_n {N\_D}^2 Z e^2 h^3}{2L\\epsilon\_r\\epsilon\_0} \\qquad V\_p =\\frac{e {N\_D} h^2}{2 \\epsilon\_r\\epsilon\_0} \\qquad eV\_{bi} =k\_B T \\ln \\left(\\frac{N\_A N\_D}{{n\_i}^2}\\right) \\qquad n\_i=\\sqrt{N\_cN\_v\\left(\\frac{T}{300}\\right)^{3}}\\exp\\left(\\frac{-E\_g}{2k\_BT}\\right). \\end{align}$$
 
-$$\\begin{equation} V = \\frac{\\epsilon\_{\\text{semi}}E\_s}{\\epsilon\_{\\text{ox}}}t\_{\\text{ox}}+V\_s. \\end{equation}$$
+In the saturation regime the current is,
 
-This is the correct gate voltage for the boundary conditions we chose on the right, but generally, it may not be the desired gate voltage. The starting position of integration is then adjusted either to the right or left, and the integration process is repeated until the calculated voltage, obtained through numerical integration, matches $$V_{shoot}$$. The simulation produces incorrect results if the valence band or conduction band approach within approximately $$3k_BT$$ from the Fermi energy. This limitation arises because the formulas for nnn and ppp are valid only when the valence and conduction bands are sufficiently far from the Fermi energy.
+$$ \\begin{equation} I\_D=I\_p\\left\[\\frac{1}{3}-\\frac{V\_{bi}-V\_G}{V\_p}+\\frac{2}{3}\\left(\\frac{V\_{bi}-V\_G}{V\_p}\\right)^{3/2}\\right\]. \\end{equation}$$
 
- <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>    
+These expressions are valid assuming that the pn junction is reverse biased. For a n-channel JFET, $$GV_G$$ < 0 and $$V_D$$ > 0 in this regime.
+
+   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>    
  

@@ -5,5 +5,5 @@
 2) S. M. Sze and Kwok K. Ng, Physics of Semiconductor Devices, Wiley, 2006
 
 #### Video Lectures
-- [MOS capacitor](https://www.youtube.com/watch?v=Gwyi2brc0QQ)
+- [Field Effect Transistors](https://archive.nptel.ac.in/content/storage2/courses/115102014/downloads/module5.pdf)
 

@@ -23,14 +23,14 @@ Regions of Operation
 
 *   In this region, the JFET operates like a variable resistor. The $$V_{DS}$$ is low, and the channel is uniformly conductive.
 *   The drain current ($$I_D$$) increases linearly with an increase in $$V_{DS}$$.
-*   The relationship can be approximated by Ohm's law: ID ≈ $$V_{DS}$$ / RDS(on), where RDS(on) is the on-resistance of the JFET.
+*   The relationship can be approximated by Ohm's law: $$I_D$$ ≈ $$V_{DS}$$ / RDS(on), where RDS(on) is the on-resistance of the JFET.
 
 ### Active (Saturation) Region
 
 *   As VDS increases, the channel near the drain end starts to pinch off when the voltage at the drain end of the channel equals the gate voltage plus the pinch-off voltage (VP).
 *   The current ID saturates and becomes relatively independent of VDS. The JFET enters the saturation region where $$I_D$$ is controlled by $$V_{GS}$$ and is given by:
     
-    ID = IDSS (1 - VGS / VP)2
+    $$I_D = I_{DSS} (1 - V_{GS} / V_P)^2$$
     
     where IDSS is the drain-source saturation current and VP is the pinch-off voltage.
     
